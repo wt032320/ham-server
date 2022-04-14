@@ -1,0 +1,26 @@
+{
+  "name": "@byteinspire-template/koa",
+  "version": "0.0.7",
+  "files": [
+    "*",
+    "!.*",
+    ".gitignore"
+  ],
+  "dependencies": {
+    "@byteinspire/inspirecloud-api": "*",
+    "@koa/router": "^8.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.11.0",
+    "koa-body": "^4.1.1",
+    "koa-jwt": "^4.0.3",
+    "koa-static": "^5.0.0",
+    "koa2-request": "^1.0.4"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "repository": {},
+  "license": "ISC",
+  "scripts": {}
+}
