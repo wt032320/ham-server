@@ -5,8 +5,10 @@ const koaJwt = require('koa-jwt');
 
 const todoRouter = require('./routers/todo');
 const authRouter = require('./routers/auth');
-const dailyTestRouter = require("./routers/dailyTest");
-const userRouter = require("./routers/user");
+const dailyTestRouter = require('./routers/dailyTest');
+const userRouter = require('./routers/user');
+const examRouter = require('./routers/exam');
+const bbsRouter = require('./routers/bbs');
 
 const Koa = require('koa');
 const jwt = require("jsonwebtoken");
@@ -23,7 +25,7 @@ app.use(
   koaJwt({
     secret,
   }).unless({
-    path: [/^\/login/]
+    path: [/^\/login/, '/bbs/lists', /^\/bbs\/detail/]
   })
 )
 
@@ -34,17 +36,17 @@ app.use((ctx, next) => {
       //取出token
       const scheme = parts[0];
       const token = parts[1];
-      
+
       if (/^Bearer$/i.test(scheme)) {
         try {
           //jwt.verify方法验证token是否有效
-          jwt.verify(token, secret.sign, {
+          jwt.verify(token, secret, {
             complete: true
           });
         } catch (error) {
           //token过期 生成新的token
-          // const newToken = jwt.sign();
-          //将新token放入Authorization中返回给前端
+          // const newToken = jwt.sign(payload, secret, { expiresIn: '1h' });
+          // //将新token放入Authorization中返回给前端
           // ctx.res.setHeader('Authorization', newToken);
         }
       }
@@ -52,6 +54,7 @@ app.use((ctx, next) => {
   }
 
   return next().catch(err => {
+    console.log(err)
     if (err.status === 401) {
       ctx.status = 401;
       ctx.body =
@@ -85,5 +88,7 @@ app.use(todoRouter);
 app.use(authRouter);
 app.use(dailyTestRouter);
 app.use(userRouter);
+app.use(examRouter);
+app.use(bbsRouter);
 
 module.exports = app;

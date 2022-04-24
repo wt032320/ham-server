@@ -15,7 +15,7 @@ class AuthService {
     let userSign = JSON.parse(res.body);
 
     const payload = { username: data.username, id: userSign.openid };
-    const token = jwt.sign(payload, secret, { expiresIn: 82800000 })
+    const token = jwt.sign(payload, secret, { expiresIn: '10d' })
     
     const user = await userTable.where({userId: userSign.openid}).findOne();
     
@@ -30,6 +30,7 @@ class AuthService {
         token,
         userId: userSign.openid,
         username: data.username,
+        titleTag: 1,
         email: undefined,
         phone: undefined,
         sign: undefined,
@@ -43,6 +44,7 @@ class AuthService {
         email: user.email,
         phone: user.phone,
         sign: user.sign,
+        titleTag: user.titleTag,
       }
 
       return result;
