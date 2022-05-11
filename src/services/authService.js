@@ -23,6 +23,7 @@ class AuthService {
       const userInfo = {
         userId: userSign.openid,
         userName: data.username,
+        titleTag: 1,
       }
       await userTable.save(userInfo)
 

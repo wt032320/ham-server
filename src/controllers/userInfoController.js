@@ -8,6 +8,13 @@ class UserInfoController {
     ctx.body = { result }
   }
 
+  async setTitleTag(ctx) {
+    const data = ctx.request.body
+    const result = await userService.setTitleTag(data)
+
+    ctx.body = { result }
+  }
+
   async addCollectTopic(ctx) {
     const { userId, topicId } = ctx.request.body
     const result = await userService.addCollectTopic(userId, topicId)
@@ -38,6 +45,7 @@ class UserInfoController {
 
   async getCollectTopicList(ctx) {
     const userId = ctx.params.id
+
     const result = await userService.getCollectTopicList(userId)
 
     ctx.body = {

@@ -5,10 +5,6 @@ const db = inspirecloud.db;
 
 class DailyTestService {
 
-  async addTopic(data) {
-    return await dailyTestTable.save(data);
-  };
-
   async getTopicList(data) {
     const startIndex = data.startIndex
     const lists = await dailyTestTable.where({ serialNumber: db.gte(startIndex).lte(startIndex + 4) })

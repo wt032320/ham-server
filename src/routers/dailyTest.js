@@ -6,7 +6,6 @@ const router = Router({
 
 const dailyTestController = require("../controllers/dailyTestController");
 
-router.post("/add", dailyTestController.addTopic);
 router.post("/lists", dailyTestController.getTopicList)
 
 // Koa 的路由需要调用 routes 函数获取实际用于 use 的函数

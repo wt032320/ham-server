@@ -13,6 +13,7 @@ router.post('/collects/wrong', userInfoController.addWrongTopic)
 router.post('/undock/wrong', userInfoController.removeWrongTopic)
 router.get('/collects/lists/:id', userInfoController.getCollectTopicList)
 router.get('/wrong/lists/:id', userInfoController.getWrongTopicList)
+router.post('/tag', userInfoController.setTitleTag);
 
 // Koa 的路由需要调用 routes 函数获取实际用于 use 的函数
 module.exports = router.routes();

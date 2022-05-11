@@ -26,7 +26,18 @@ class UserInfoService {
     }
 
     await userTable.save(user);
-    return { Status: 200 }
+    
+    const userInfo = await userTable.where({ userId: id }).findOne();
+
+    const userData = {
+      userId: userInfo.userId,
+      username: userInfo.userName,
+      email: userInfo.email,
+      phone: userInfo.phone,
+      sign: userInfo.sign,
+      titleTag: userInfo.titleTag,
+    }
+    return { Status: 200, userData }
   }
 
   async addCollectTopic(userId, topicId) {
@@ -97,6 +108,24 @@ class UserInfoService {
     }
   }
 
+  async setTitleTag(data) {
+    const userId = data.userId,
+          titleTag = data.tag
+    const user = await userTable.where({ userId: userId }).findOne()
+    if (!user) {
+      const error = new Error(`user not found`);
+      error.status = 404;
+      throw error;
+    }
+
+    if (titleTag !== 0) {
+      user.titleTag = titleTag
+    }
+
+    await userTable.save(user);
+    return { Status: 200 }
+  }
+
   async getCollectTopicList(userId) {
     const result = await userTable.where({ userId: userId })
     .projection({
@@ -105,10 +134,10 @@ class UserInfoService {
     })
     .findOne()
     
-
+    console.log(result.collectTopicId)
     const idList = result.collectTopicId
 
-    if (idList === null) {
+    if (idList == undefined) {
       return { code: 404, msg: 'no data' }
     } else {
       let topicLists = []
@@ -133,9 +162,8 @@ class UserInfoService {
       wrongTopicId: 1
     })
     .findOne()
-    
     const idList = result.wrongTopicId
-    if (idList === null) {
+    if (idList == undefined) {
       return { code: 404, msg: 'no data' }
     } else {
       let topicLists = []
