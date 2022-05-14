@@ -34,8 +34,24 @@ class BbsService {
     return result
   }
 
-  async searchArticle(data) {
-    
+  async searchArticle(keyWords) {
+    const result = await bbsTable.where()
+    .projection({
+      updatedAt: 0,
+      articleContent: 0
+    })
+    .sort({ createdAt: -1 })
+    .find()
+
+    const searchResult = []
+    result.forEach((item) => {
+        const searchString = Object.values(item).join()
+        if (searchString.includes(keyWords)) {
+          searchResult.push(item)
+        }
+    });
+
+    return searchResult
   }
 }
 

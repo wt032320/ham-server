@@ -16,6 +16,6 @@ router.get('/remove/news/:id', adminController.deleteNews);
 router.post('/add/news', adminController.addNews);
 router.post('/topics', adminController.getTopicList);
 router.get('/remove/topic/:id', adminController.deleteTopic);
-router.post("/add/topic", adminController.addTopic);
+router.post('/add/topic', adminController.addTopic);
 
 module.exports = router.routes();

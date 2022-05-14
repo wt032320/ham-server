@@ -69,8 +69,7 @@ class AdminController {
   }
 
   async addNews(ctx) {
-    const content = ctx.request.body.content,
-          status = ctx.request.body.status
+    const { conent, status } = ctx.request.body
     
     const result = await adminService.addNews(content, status);
 
@@ -97,11 +96,11 @@ class AdminController {
   }
 
   async addTopic(ctx) {
-    const data = ctx.request.body;
+    const data = ctx.request.body
 
     const result = await adminService.addTopic(data);
     if (result) {
-      ctx.body = { status: 200 }
+      ctx.body = { result }
     }
   }
 }

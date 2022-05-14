@@ -208,8 +208,10 @@ class AdminService {
   }
 
   async addTopic(data) {
-    return await dailyTestTable.save(data);
-  };
+    await dailyTestTable.save(data);
+
+    return { Status: 200 }
+  }
 
 }
 

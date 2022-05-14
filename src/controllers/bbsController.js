@@ -40,6 +40,21 @@ class BbsController {
       result
     }
   }
+
+  async searchArticle(ctx) {
+    const { keyWords } = ctx.request.body
+
+    const result = await bbsService.searchArticle(keyWords)
+
+    if (result.length) {
+      ctx.body = {
+        status: 200,
+        result
+      }
+    } else {
+      ctx.body = { status: 404 }
+    }
+  }
 }
 
 module.exports = new BbsController();

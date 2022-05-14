@@ -9,5 +9,6 @@ const router = Router({
 router.post('/new', bbsController.setNewBlog);
 router.get('/lists', bbsController.getArticleList);
 router.get('/detail/:id', bbsController.getArticleDetail);
+router.post('/search', bbsController.searchArticle);
 
 module.exports = router.routes();

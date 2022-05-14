@@ -7,7 +7,7 @@ class DailyTestService {
 
   async getTopicList(data) {
     const startIndex = data.startIndex
-    const lists = await dailyTestTable.where({ serialNumber: db.gte(startIndex).lte(startIndex + 4) })
+    const lists = await dailyTestTable.where({ serialNumber: db.gte(startIndex).lte(startIndex + 5) })
       .projection({
         createdAt: 0,
         updatedAt: 0
