@@ -7,6 +7,7 @@ const router = Router({
 const adminController = require("../controllers/adminController");
 
 router.post('/login', adminController.login);
+router.post('/regist', adminController.regist);
 router.post('/users', adminController.getUserList);
 router.get('/remove/user/:id', adminController.deleteUser);
 router.post('/bbs', adminController.getBbsList);

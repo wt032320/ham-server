@@ -32,6 +32,17 @@ class AdminService {
     }
   }
 
+  async regist(data) {
+
+    const result = await adminTable.where({ username: data.username }).findOne()
+    if (result == null) {
+      await adminTable.save(data)
+      return { status: 200 }
+    } else {
+      return { status: 400 }
+    }
+  }
+
   async getUserList(data) {
 
     const result = await userTable.where()

@@ -65,6 +65,7 @@ app.use(
     path: [
       /^\/login/,
       '/admin/login',
+      '/admin/regist',
       '/bbs/lists',
       '/bbs/search',
       /^\/bbs\/detail/

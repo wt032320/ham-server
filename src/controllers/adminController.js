@@ -13,6 +13,14 @@ class AdminController {
     }
   }
 
+  async regist(ctx) {
+    const { username, password, phone } = ctx.request.body
+
+    const result = await adminService.regist({ username, password, phone })
+
+    ctx.body = { result }
+  }
+
   async getUserList(ctx) {
     const { page, pageSize } = ctx.request.body
     
