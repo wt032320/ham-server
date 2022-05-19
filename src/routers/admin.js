@@ -18,5 +18,10 @@ router.post('/add/news', adminController.addNews);
 router.post('/topics', adminController.getTopicList);
 router.get('/remove/topic/:id', adminController.deleteTopic);
 router.post('/add/topic', adminController.addTopic);
+router.get('/statistical/age', adminController.statisticalAge);
+router.get('/statistical/category', adminController.statisticalCategory);
+router.get('/statistical/bbs/count', adminController.statisticalBbsCount);
+router.get('/statistical/exam/count', adminController.sstatisticalExamCount);
+router.get('/news/info', adminController.getNewsInfo);
 
 module.exports = router.routes();

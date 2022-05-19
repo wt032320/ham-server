@@ -77,7 +77,7 @@ class AdminController {
   }
 
   async addNews(ctx) {
-    const { conent, status } = ctx.request.body
+    const { content, status } = ctx.request.body
     
     const result = await adminService.addNews(content, status);
 
@@ -109,6 +109,38 @@ class AdminController {
     const result = await adminService.addTopic(data);
     if (result) {
       ctx.body = { result }
+    }
+  }
+
+  async statisticalAge(ctx) {
+    const result = await adminService.statisticalAge()
+    ctx.body = { status: 200, result }
+  }
+
+  async statisticalCategory(ctx) {
+    const result = await adminService.statisticalCategory()
+    ctx.body = { status: 200, result }
+  }
+
+  async statisticalBbsCount(ctx) {
+    const result = await adminService.statisticalBbsCount()
+    ctx.body = { status: 200, result }
+  }
+
+  async sstatisticalExamCount(ctx) {
+    const result = await adminService.statisticalExamCount()
+    ctx.body = { status: 200, result }
+  }
+
+  async getNewsInfo(ctx) {
+    const result = await adminService.getNewsInfo()
+
+    console.log(result)
+
+    if (result.length) {
+      ctx.body = { status: 200 , result }
+    } else {
+      ctx.body = { status: 404 }
     }
   }
 }
