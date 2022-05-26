@@ -26,7 +26,7 @@ class UserInfoService {
     }
 
     if (data.age !== '') {
-      user.sign = data.sign
+      user.age = data.age
     }
 
     await userTable.save(user);
