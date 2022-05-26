@@ -32,6 +32,7 @@ class AuthService {
         userId: userSign.openid,
         username: data.username,
         titleTag: 1,
+        age: undefined,
         email: undefined,
         phone: undefined,
         sign: undefined,
@@ -45,6 +46,7 @@ class AuthService {
         email: user.email,
         phone: user.phone,
         sign: user.sign,
+        age: user.age,
         titleTag: user.titleTag,
       }
 

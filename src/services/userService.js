@@ -25,6 +25,10 @@ class UserInfoService {
       user.sign = data.sign
     }
 
+    if (data.age !== '') {
+      user.sign = data.sign
+    }
+
     await userTable.save(user);
     
     const userInfo = await userTable.where({ userId: id }).findOne();
@@ -35,6 +39,7 @@ class UserInfoService {
       email: userInfo.email,
       phone: userInfo.phone,
       sign: userInfo.sign,
+      age: userInfo.age,
       titleTag: userInfo.titleTag,
     }
     return { Status: 200, userData }

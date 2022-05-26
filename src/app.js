@@ -17,26 +17,6 @@ const jwt = require("jsonwebtoken");
 const { secret } = require('./data/appSecret');
 const app = new Koa();
 
-// const server = require("http").createServer(app.callback());
-// const io = require("socket.io")(server);
-
-// io.of("ws").on("connection", (socket) => {
-//   console.log("a user connected");
-
-//   socket.on("disconnect", () => {
-//       console.log("user disconnected");
-//   });
-
-//   setInterval(function () {
-//       socket.broadcast.emit("broadcast", moment().format("YYYY-MM-DD HH:mm:ss"));
-//   }, 1000);
-
-//   socket.on("echo", (msg) => {
-//       console.log("echo from client: ", msg);
-//       socket.emit("echo", msg);
-//   });
-// });
-
 // 为应用使用中间件
 // 静态文件中间件
 app.use(koaStatic(path.join(__dirname, '../public')));
@@ -48,7 +28,7 @@ app.use(
           if (ctx.url === '/test') {
               return '*'; // 允许来自所有域名请求
           }
-          return 'http://localhost:8003'; //只允许http://localhost:8080这个域名的请求
+          return 'http://localhost:8006'; //只允许http://localhost:8080这个域名的请求
       },
       maxAge: 5, //指定本次预检请求的有效期，单位为秒。
       credentials: true, //是否允许发送Cookie
@@ -136,11 +116,5 @@ app.use(userRouter);
 app.use(examRouter);
 app.use(bbsRouter);
 app.use(adminRouter);
-
-// // 程序启动监听的端口
-// const port = 3004;
-
-// server.listen(port);
-// console.log("Listening on " + port);
 
 module.exports = app;
